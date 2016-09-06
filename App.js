@@ -1,23 +1,27 @@
-'use strict';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import React from 'React';
-
-// Have state
 class App extends React.Component {
   render() {
-    // return <div>HI</div> <b>Bold</b>  Doesn't work
+    let txt = this.props.txt;
+    let cat = this.props.cat;
 
-    // If we want to render a few dom element we should wrap it into wrapper
-    return (
-      <div>
-        <h1>Hello</h1>
-        <b>Bold</b>
-      </div>
-    );
+    return <h1>{txt}  {cat}</h1>
   }
 }
 
-// doesn't have state
-// const App = () => <h1>Hello</h1>
+App.propTypes = {
+  txt: React.PropTypes.string,
+  cat: React.PropTypes.number.isRequired
+};
 
-export default App
+App.defaultProps = {
+  txt: 'This is the default txt'
+};
+
+ReactDOM.render(
+  <App cat={5} txt="This is a new props text"/>,
+  document.getElementById('app')
+);
+
+
