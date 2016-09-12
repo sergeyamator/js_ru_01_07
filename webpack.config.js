@@ -10,6 +10,8 @@ module.exports = {
     port: 8080
   },
 
+  devtool: 'source-map',
+
   module: {
     loaders: [
       {

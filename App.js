@@ -1,5 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDom from 'react-dom';
+import News from './news';
+import ArticleList from './articleList';
+import data from './list';
+console.log(data);
 
 class App extends React.Component {
   constructor() {
@@ -22,7 +26,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Widget txt={this.state.txt} update={this.update}/> <Widget txt={this.state.txt} update={this.update}/> <Widget txt={this.state.txt} update={this.update}/>
+        <Widget txt={this.state.txt} update={this.update}/>
+        <Widget txt={this.state.txt} update={this.update}/>
       </div>
     )
   }
@@ -30,7 +35,6 @@ class App extends React.Component {
 
 
 const Widget = (props) => {
-
   return (
     <div>
       <input type="text"
@@ -41,4 +45,14 @@ const Widget = (props) => {
   )
 };
 
-export default App
+ReactDom.render(
+  <News/>,
+  document.getElementById('news')
+);
+
+ReactDom.render(
+  <ArticleList article={data} />,
+  document.getElementById('article')
+);
+
+export default App;
