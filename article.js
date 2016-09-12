@@ -2,15 +2,32 @@
 
 import React from 'react';
 
-function Article(props) {
-  const article = props.article;
+class Article extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isOpen: false
+    }
+  }
 
-  return (
-    <div>
-      <h1>{article.title}</h1>
-      <section>{article.text}</section>
-    </div>
-  );
+  render() {
+    const article = this.props.article;
+    const isOpen = this.state.isOpen;
+    const body = isOpen ? <section>{article.text}</section> : null;
+
+    return (
+      <div>
+        <h1 onClick={this.toggleOpen.bind(this)}>{article.user}</h1>
+        {body}
+      </div>
+    );
+  }
+
+ toggleOpen() {
+   this.setState({
+     isOpen: !this.state.isOpen
+   })
+ }
 }
 
 export default Article;
