@@ -3,15 +3,15 @@ import ReactDom from 'react-dom';
 import News from './news';
 import ArticleList from './articleList';
 import data from './list';
-console.log(data);
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      txt: 'this is the state txt',
-      cat: 0
+      red: 0,
+      green: 0,
+      blue: 0
     };
 
     this.update = this.update.bind(this);
@@ -19,20 +19,40 @@ class App extends React.Component {
 
   update(e) {
     this.setState({
-      txt: e.target.value
+      red: ReactDom.findDOMNode(this.refs.red.refs.input).value,
+      green: ReactDom.findDOMNode(this.refs.green).value,
+      blue: ReactDom.findDOMNode(this.refs.blue).value
     })
   }
 
   render() {
     return (
       <div>
-        <Widget txt={this.state.txt} update={this.update}/>
-        <Widget txt={this.state.txt} update={this.update}/>
+        <Slider ref="red" update={this.update}/>
+        {this.state.red}
+        <Slider ref="green" update={this.update}/>
+        {this.state.green}
+        <Slider ref="blue" update={this.update}/>
+        {this.state.blue}
       </div>
     )
   }
 }
 
+
+class Slider extends React.Component {
+  render() {
+    return (
+      <div >
+        <input ref="input" type="range"
+               min="0"
+               max="255"
+               onChange={this.props.update}
+        />
+        </div>
+    );
+  }
+}
 
 const Widget = (props) => {
   return (
@@ -51,7 +71,7 @@ ReactDom.render(
 );
 
 ReactDom.render(
-  <ArticleList article={data} />,
+  <ArticleList article={data}/>,
   document.getElementById('article')
 );
 

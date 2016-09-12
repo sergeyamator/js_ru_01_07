@@ -3,12 +3,9 @@
 import React from 'react';
 
 class Article extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      isOpen: false
-    }
-  }
+  state = {
+    isOpen: false
+  };
 
   render() {
     const article = this.props.article;
@@ -17,17 +14,17 @@ class Article extends React.Component {
 
     return (
       <div>
-        <h1 onClick={this.toggleOpen.bind(this)}>{article.user}</h1>
+        <h1 onClick={this.toggleOpen}>{article.user}</h1>
         {body}
       </div>
     );
   }
 
- toggleOpen() {
-   this.setState({
-     isOpen: !this.state.isOpen
-   })
- }
+  toggleOpen = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
+  }
 }
 
 export default Article;
