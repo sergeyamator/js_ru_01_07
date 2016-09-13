@@ -3,6 +3,7 @@ import ReactDom from 'react-dom';
 import News from './news';
 import ArticleList from './articleList';
 import data from './list';
+import Wrapper from './wrapper';
 
 class App extends React.Component {
   constructor() {
@@ -74,5 +75,11 @@ ReactDom.render(
   <ArticleList article={data}/>,
   document.getElementById('article')
 );
+
+ReactDom.render(
+  <Wrapper/>,
+  document.getElementById('button')
+);
+
 
 export default App;
